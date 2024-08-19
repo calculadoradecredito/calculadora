@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Préstamo</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Mensaje de Información</title>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -16,253 +14,70 @@
       padding: 0;
     }
 
-    #calculator {
-      width: 350px;
-      margin: 34px auto;
+    #messageContainer {
+      width: 90%;
+      max-width: 600px;
+      margin: 40px auto;
       background-color: #1E3851;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
-    #header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #FBBC2F;
-      padding-bottom: 10px;
-    }
-
-    #logo {
-      width: 100px;
-      height: 100px;
-      margin-right: 20px;
-      border-radius: 50%;
-    }
-
-    #titleContainer {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    h1 {
+    #messageTitle {
       font-family: 'Aileron', sans-serif;
       color: #F8B63E;
+      font-size: 28px;
       font-weight: bold;
-      font-size: 25px;
-      text-transform: uppercase;
-      margin: 0;
-      text-align: left;
-    }
-
-    #subHeader {
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 5px;
-      text-align: left;
-    }
-
-    label {
-      font-family: 'Aileron', sans-serif;
-      color: #F8B63E;
-      font-weight: bold;
-      text-align: left;
-      display: block;
       margin-bottom: 10px;
     }
 
-    input, select {
-      width: calc(100% - 16px);
-      padding: 12px;
-      box-sizing: border-box;
-      margin: 8px 0;
-      border: 1px solid #F8B63E;
-      border-radius: 5px;
-      background-color: #1E3851;
-      color: #fff;
-      font-size: 16px;
-      text-align: left;
-      transition: background-color 0.5s ease-out;
-    }
-
-    #valorCuota {
-      font-size: 26px;
-      margin-top: 20px;
+    #messageText {
+      font-size: 20px;
       color: #F8B63E;
-      background-color: #0A1F4A;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      border: 2px solid #F8B63E;
+      margin-bottom: 20px;
     }
 
-    button {
-      width: 100%;
-      padding: 12px;
+    #messageButton {
       background-color: #F8B63E;
       color: #0A1F4C;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
+      padding: 15px 25px;
       font-size: 18px;
+      cursor: pointer;
       text-transform: uppercase;
       font-weight: bold;
-      transition: background-color 0.5s ease-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transition: background-color 0.3s ease;
     }
 
-    button i {
-      margin-right: 10px;
-      font-size: 22px;
+    #messageButton:hover {
+      background-color: #FBBC2F;
     }
 
-   #contactarAsesor {
-  display: none;
-  background-color: #F8B63E;
-  color: #0A1F4C;
-  animation: colorChange 3s infinite;
-}
-
-@keyframes colorChange {
-  0% {
-    background-color: #F8B63E;
-    color: #0A1F4C;
-  }
-  50% {
-    background-color: #25D366; /* Verde WhatsApp */
-    color: #fff;
-  }
-  100% {
-    background-color: #F8B63E;
-    color: #0A1F4C;
-  }
-}
-
-    input.highlight {
-      animation: highlight 0.5s ease-out;
-    }
-
-    @keyframes highlight {
-      0%, 100% {
-        background-color: #1E3851;
-      }
-      50% {
-        background-color: #FBBC2F;
-      }
-    }
-
-    #socialMediaIcons img {
-      width: 60px;
-      height: 60px;
-      margin-right: 10px;
-      margin-bottom: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s ease-out;
-    }
-
-    #socialMediaIcons img:hover {
-      transform: scale(1.2);
+    #messageButton:focus {
+      outline: none;
     }
   </style>
 </head>
 <body>
 
-<div id="calculator">
-  <div id="header">
-    <img id="logo" src="https://github.com/juanc102030/imagenes/blob/main/LOGO.jpg?raw=true" alt="Logo">
-    <div id="titleContainer">
-      <h1>Calculadora de Préstamo</h1>
-      <p id="subHeader">Crédito por descuento de nómina</p>
-    </div>
+<div id="messageContainer">
+  <div id="messageTitle">¡Las tasas de interés bajaron!</div>
+  <div id="messageText">
+    Encuentra aquí el valor de la cuota para tu crédito con el mejor interés del mercado y por descuento de nómina.
   </div>
-
-  <label for="valorCredito">¿Cuánto dinero necesitas? (en pesos):</label>
-  <input type="text" id="valorCredito" placeholder="Ingrese valor del crédito" oninput="formatCurrency(this)" class="highlight">
-
-  <label for="tipoCredito">Tipo de Crédito:</label>
-  <select id="tipoCredito" class="highlight">
-    <option value="unificacionDeuda">Unificación de deuda</option>
-    <option value="compraCartera">Compra de cartera</option>
-    <option value="libreInversion">Crédito de libre inversión</option>
-  </select>
-
-  <p id="valorCuota">Valor de Cuota: $0</p>
-
-  <button onclick="calcular()"><i class="fas fa-calculator"></i>Calcular</button>
-  <button id="contactarAsesor" onclick="contactarAsesor()"><i class="fab fa-whatsapp"></i>Contactar un asesor</button>
-</div>
-
-<p id="copyrightText">© 2024 Servicios Bancarios. Todos los derechos reservados.</p>
-<div id="socialMediaIcons">
-  <a href="https://acortar.link/pJyaA0" target="_blank"><img src="https://github.com/juanc102030/imagenes/blob/main/instagram.png?raw=true" alt="Instagram"></a>
-  <a href="https://acortar.link/06zTTm" target="_blank"><img src="https://github.com/juanc102030/imagenes/blob/main/facebook.png?raw=true" alt="Facebook"></a>
+  <button id="messageButton" onclick="proceedToCalculator()">Proceder a la Calculadora</button>
 </div>
 
 <script>
-  function formatCurrency(input) {
-    let value = input.value.replace(/[^0-9]/g, '');
-    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    input.value = value;
-  }
-
-  function calcular() {
-    const valorCreditoInput = document.getElementById('valorCredito');
-    const valorCredito = parseInt(valorCreditoInput.value.replace(/\./g, '')) || 0;
-
-    if (valorCredito > 0) {
-      const resultado = valorCredito * 17160;
-      document.getElementById('valorCuota').textContent = 'Valor de Cuota: $' + resultado.toLocaleString('es-CO');
-      document.getElementById('contactarAsesor').style.display = 'block';
-
-      // Activar el efecto de color después de 7 segundos
-      setTimeout(() => {
-        iniciarEfectoColor();
-      }, 7000);
-    } else {
-      alert('Por favor, ingrese un valor válido para el crédito.');
-    }
-  }
-
-  function iniciarEfectoColor() {
-    const boton = document.getElementById('contactarAsesor');
-    const duracionEfecto = 3000; // 3 segundos de duración del efecto
-    const intervaloEspera = 5000; // 5 segundos de espera entre efectos
-
-    const aplicarEfecto = () => {
-      boton.style.animation = `colorChange ${duracionEfecto / 1000}s ease-in-out`;
-      setTimeout(() => {
-        boton.style.animation = ''; // Desactivar la animación para permitir reiniciar
-        setTimeout(aplicarEfecto, intervaloEspera);
-      }, duracionEfecto);
-    };
-
-    aplicarEfecto();
-  }
-
-  function contactarAsesor() {
-    const mensaje = "Acabo de hacer el cálculo, necesito más información";
-    const telefono = "+573204863991";
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
+  function proceedToCalculator() {
+    // Redirigir o mostrar la calculadora aquí
+    // Por ejemplo:
+    window.location.href = 'https://calculadoradecredito.github.io/calculadora/'; // Cambia esto a la URL de tu calculadora
   }
 </script>
 
-  <script>
-    window.addEventListener('beforeunload', function (e) {
-      // El texto aquí puede no ser mostrado en algunos navegadores
-      const mensaje = 'Espera! no te vayas sin saber a que interes puedes sacar tu credito, es sin compromiso contacta a un asesor.';
-      
-      // Establecer el mensaje en la propiedad e.returnValue
-      e.returnValue = mensaje;
-      return mensaje;
-    });
-  </script>
 </body>
 </html>
