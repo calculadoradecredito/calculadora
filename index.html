@@ -122,20 +122,27 @@
       font-size: 22px;
     }
 
-    #contactarAsesor {
-      display: none;
-    }
+   #contactarAsesor {
+  display: none;
+  background-color: #F8B63E;
+  color: #0A1F4C;
+  animation: colorChange 3s infinite;
+}
 
-    @keyframes colorChange {
-      0%, 100% {
-        background-color: #F8B63E;
-        color: #0A1F4C;
-      }
-      50% {
-        background-color: #fff;
-        color: #0A1F4C;
-      }
-    }
+@keyframes colorChange {
+  0% {
+    background-color: #F8B63E;
+    color: #0A1F4C;
+  }
+  50% {
+    background-color: #25D366; /* Verde WhatsApp */
+    color: #fff;
+  }
+  100% {
+    background-color: #F8B63E;
+    color: #0A1F4C;
+  }
+}
 
     input.highlight {
       animation: highlight 0.5s ease-out;
@@ -241,7 +248,7 @@
 
   function contactarAsesor() {
     const mensaje = "Acabo de hacer el cálculo, necesito más información";
-    const telefono = "3204863991";
+    const telefono = "+573204863991";
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
   }
