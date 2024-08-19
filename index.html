@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de credito</title>
+  <title>Calculadora de Préstamo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -15,9 +16,8 @@
       padding: 0;
     }
 
-    #calculator, #results {
-      width: 87%;
-      max-width: 400px;
+    #calculator {
+      width: 500px;
       margin: 34px auto;
       background-color: #1E3851;
       padding: 20px;
@@ -28,24 +28,43 @@
     #header {
       display: flex;
       align-items: center;
-      justify-content: center;
       margin-bottom: 20px;
-      position: relative;
       border-bottom: 2px solid #FBBC2F;
+      padding-bottom: 10px;
     }
 
     #logo {
-      width: 70px;
-      height: 70px;
-      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
       border-radius: 50%;
-      position: relative;
-      left: 0;
-      top: 26px;
-      transform: translateY(-50%);
     }
 
-    h1, label {
+    #titleContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    h1 {
+      font-family: 'Aileron', sans-serif;
+      color: #F8B63E;
+      font-weight: bold;
+      font-size: 32px;
+      text-transform: uppercase;
+      margin: 0;
+      text-align: left;
+    }
+
+    #subHeader {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 5px;
+      text-align: left;
+    }
+
+    label {
       font-family: 'Aileron', sans-serif;
       color: #F8B63E;
       font-weight: bold;
@@ -54,13 +73,7 @@
       margin-bottom: 10px;
     }
 
-    h1 {
-      font-size: 32px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    input {
+    input, select {
       width: calc(100% - 16px);
       padding: 12px;
       box-sizing: border-box;
@@ -73,31 +86,19 @@
       text-align: left;
       transition: background-color 0.5s ease-out;
     }
-    #capital 
-    {
-      font-size: 23px;
-     }
-#results #intereses {
-  overflow: hidden;
-  display: inline-block;
-  white-space: nowrap;
-  position: relative;
-  font-size: 23px;
-  animation: increaseSize 3s;
-}
 
-@keyframes increaseSize {
-  0%, 20%, 50%, 80%, 100% {
-    left: 0;
-    font-size: 38px;
-  }
-  40%, 60% {
-    left: 10px; /* Ajusta según sea necesario */
-    font-size: 22px; /* Ajusta según sea necesario */
-  }
-}
-    
-    
+    #valorCuota {
+      font-size: 26px;
+      margin-top: 20px;
+      color: #F8B63E;
+      background-color: #0A1F4A;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      border: 2px solid #F8B63E;
+    }
+
     button {
       width: 100%;
       padding: 12px;
@@ -111,53 +112,29 @@
       text-transform: uppercase;
       font-weight: bold;
       transition: background-color 0.5s ease-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #results {
+    button i {
+      margin-right: 10px;
+      font-size: 22px;
+    }
+
+    #contactarAsesor {
       display: none;
     }
 
-    #results label {
-      color: #F8B63E;
-      font-weight: bold;
-      display: block;
-      margin-top: 20px;
-      text-align: left;
-      font-size: 18px;
-    }
-    #results h1 {
-  font-size: 22px;
-}
-    #results #title {
-  font-size: 28px;
-}
-    #blinkingTitle {
-  font-size: 28px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 49% {
-    opacity: 1;
-  }
-  50%, 100% {
-    opacity: 0;
-  }
-}
-
-    #recalculate {
-      width: 100%;
-      padding: 12px;
-      background-color: #F8B63E;
-      color: #0A1F4C;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: bold;
-      transition: background-color 0.5s ease-out;
+    @keyframes colorChange {
+      0%, 100% {
+        background-color: #F8B63E;
+        color: #0A1F4C;
+      }
+      50% {
+        background-color: #fff;
+        color: #0A1F4C;
+      }
     }
 
     input.highlight {
@@ -171,27 +148,13 @@
       50% {
         background-color: #FBBC2F;
       }
-      
     }
-     #results #contactarAsesor {
-      width: 100%;
-      padding: 12px;
-      background-color: #F8B63E;
-      color: #0A1F4C;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: bold;
-      transition: background-color 0.5s ease-out;
-    }
+
     #socialMediaIcons img {
-      width: 60px; /* Ajusta según sea necesario */
-      height: 60px; /* Ajusta según sea necesario */
+      width: 60px;
+      height: 60px;
       margin-right: 10px;
-      margin-bottom:30px;
+      margin-bottom: 30px;
       border-radius: 50%;
       cursor: pointer;
       transition: transform 0.3s ease-out;
@@ -207,99 +170,81 @@
 <div id="calculator">
   <div id="header">
     <img id="logo" src="https://github.com/juanc102030/imagenes/blob/main/LOGO.jpg?raw=true" alt="Logo">
-    <h1>Calculadora de Credito </h1>
+    <div id="titleContainer">
+      <h1>Calculadora de Préstamo</h1>
+      <p id="subHeader">Crédito por descuento de nómina</p>
+    </div>
   </div>
 
-   <label for="cuotasPagadas">Cuotas Pagadas:</label>
-  <input type="text" id="cuotasPagadas" placeholder="Ingrese cuotas pagadas" oninput="formatCurrency(this)" class="highlight">
+  <label for="valorCredito">¿Cuánto dinero necesitas? (en pesos):</label>
+  <input type="text" id="valorCredito" placeholder="Ingrese valor del crédito" oninput="formatCurrency(this)" class="highlight">
 
-  <label for="cuota">Cuota (en pesos):</label>
-  <input type="text" id="cuota" placeholder="Ingrese cuota en pesos" oninput="formatCurrency(this)" class="highlight">
+  <label for="tipoCredito">Tipo de Crédito:</label>
+  <select id="tipoCredito" class="highlight">
+    <option value="unificacionDeuda">Unificación de deuda</option>
+    <option value="compraCartera">Compra de cartera</option>
+    <option value="libreInversion">Crédito de libre inversión</option>
+  </select>
 
-  
-  <label for="valorPrestamo">Valor del Préstamo (en pesos):</label>
-  <input type="text" id="valorPrestamo" placeholder="Ingrese valor del préstamo" oninput="formatCurrency(this)" class="highlight">
+  <p id="valorCuota">Valor de Cuota: $0</p>
 
-  <label for="saldoActual">Saldo Actual (en pesos):</label>
-  <input type="text" id="saldoActual" placeholder="Ingrese saldo actual" oninput="formatCurrency(this)" class="highlight">
-
-  <button onclick="calcular()">Calcular</button>
+  <button onclick="calcular()"><i class="fas fa-calculator"></i>Calcular</button>
+  <button id="contactarAsesor" onclick="contactarAsesor()"><i class="fab fa-whatsapp"></i>Contactar un asesor</button>
 </div>
 
-<div id="results">
-  <div id="header">
-    <img id="logo" src="https://github.com/juanc102030/imagenes/blob/main/LOGO.jpg?raw=true" alt="Logo">
-    <h1>Así has pagado tu crédito</h1>
-  </div>
- <button id="recalculate" onclick="resetForm()">Volver a Calcular</button>
-
-  <label for="capital">Has pagado a capital:</label>
-  <input type="text" id="capital" readonly>
-
-  <label for="intereses">Has pagado en intereses:</label>
-  <input type="text" id="intereses" readonly>
-<button id="contactarAsesor" onclick="window.location.href='https://wa.link/7j8hwq'">Contactarme con un asesor</button>
- 
-
-</div>
-   <p id="copyrightText">© 2024 Servicios Bancarios. Todos los derechos reservados.</p>
-  <div id="socialMediaIcons">
-    <a href="https://acortar.link/pJyaA0" target="_blank"><img src="https://github.com/juanc102030/imagenes/blob/main/instagram.png?raw=true" alt="Instagram"></a>
-    <a href="https://acortar.link/06zTTm" target="_blank"><img src="https://github.com/juanc102030/imagenes/blob/main/facebook.png?raw=true" alt="Facebook"></a>
-  </div>
+<p id="copyrightText">© 2024 Servicios Bancarios. Todos los derechos reservados.</p>
+<div id="socialMediaIcons">
+  <a href="https://acortar.link/pJyaA0" target="_blank"><img src="https://github.com/juanc102030/imagenes/blob/main/instagram.png?raw=true" alt="Instagram"></a>
+  <a href="https://acortar.link/06zTTm" target="_blank"><img src="https://github.com/juanc102030/imagenes/blob/main/facebook.png?raw=true" alt="Facebook"></a>
 </div>
 
 <script>
-  setTimeout(() => {
-    document.getElementById('cuotasPagadas').classList.add('highlight');
-  }, 3000);
-
   function formatCurrency(input) {
     let value = input.value.replace(/[^0-9]/g, '');
     value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    input.value = (input.id === 'cuotasPagadas') ? value : '$' + value;
+    input.value = value;
   }
 
   function calcular() {
-    const inputs = document.querySelectorAll('input.highlight');
-    let todosLlenos = true;
-    inputs.forEach(input => {
-      if (input.value.trim() === '') {
-        todosLlenos = false;
-        input.classList.add('highlight');
-      }
-    });
+    const valorCreditoInput = document.getElementById('valorCredito');
+    const valorCredito = parseInt(valorCreditoInput.value.replace(/\./g, '')) || 0;
 
-    if (todosLlenos) {
-      const cuotasPagadas = parseInt(document.getElementById('cuotasPagadas').value.replace(/[^0-9]/g, '')) || 0;
-      const cuota = parseInt(document.getElementById('cuota').value.replace(/[^0-9]/g, '')) || 0;
-      const valorPrestamo = parseInt(document.getElementById('valorPrestamo').value.replace(/[^0-9]/g, '')) || 0;
-      const saldoActual = parseInt(document.getElementById('saldoActual').value.replace(/[^0-9]/g, '')) || 0;
+    if (valorCredito > 0) {
+      const resultado = valorCredito * 17160;
+      document.getElementById('valorCuota').textContent = 'Valor de Cuota: $' + resultado.toLocaleString('es-CO');
+      document.getElementById('contactarAsesor').style.display = 'block';
 
-      const capitalPagado = valorPrestamo - saldoActual;
-      const interesesPagados = cuotasPagadas * cuota - capitalPagado;
-
-      document.getElementById('capital').value = '$' + capitalPagado.toLocaleString('es-CO');
-      document.getElementById('intereses').value = '$' + interesesPagados.toLocaleString('es-CO');
-
-      document.getElementById('calculator').style.display = 'none';
-      document.getElementById('results').style.display = 'block';
+      // Activar el efecto de color después de 7 segundos
+      setTimeout(() => {
+        iniciarEfectoColor();
+      }, 7000);
+    } else {
+      alert('Por favor, ingrese un valor válido para el crédito.');
     }
   }
 
-  function resetForm() {
-    document.getElementById('calculator').style.display = 'block';
-    document.getElementById('results').style.display = 'none';
+  function iniciarEfectoColor() {
+    const boton = document.getElementById('contactarAsesor');
+    const duracionEfecto = 3000; // 3 segundos de duración del efecto
+    const intervaloEspera = 5000; // 5 segundos de espera entre efectos
 
-    document.getElementById('cuotasPagadas').value = '';
-    document.getElementById('cuota').value = '';
-    document.getElementById('valorPrestamo').value = '';
-    document.getElementById('saldoActual').value = '';
+    const aplicarEfecto = () => {
+      boton.style.animation = `colorChange ${duracionEfecto / 1000}s ease-in-out`;
+      setTimeout(() => {
+        boton.style.animation = ''; // Desactivar la animación para permitir reiniciar
+        setTimeout(aplicarEfecto, intervaloEspera);
+      }, duracionEfecto);
+    };
 
-    document.getElementById('capital').value = '';
-    document.getElementById('intereses').value = '';
+    aplicarEfecto();
+  }
+
+  function contactarAsesor() {
+    const mensaje = "Acabo de hacer el cálculo, necesito más información";
+    const telefono = "3204863991";
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
   }
 </script>
-
 </body>
 </html>
