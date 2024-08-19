@@ -253,5 +253,16 @@
     window.open(url, '_blank');
   }
 </script>
+
+  <script>
+    window.addEventListener('beforeunload', function (e) {
+      // El texto aquí puede no ser mostrado en algunos navegadores
+      const mensaje = 'Espera! no te vayas sin saber a que interes puedes sacar tu credito, es sin compromiso contacta a un asesor.';
+      
+      // Establecer el mensaje en la propiedad e.returnValue
+      e.returnValue = mensaje;
+      return mensaje;
+    });
+  </script>
 </body>
 </html>
